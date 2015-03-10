@@ -83,7 +83,7 @@ _delete_snap () {
 }
 
 # create new snapshot
-_create_snap
+_create_snap && $v && printf "New snapshot created for volume $volumeid\n"
 
 # find out how many backup directories are in the root
 snapcount=`_get_snapids | wc -l`
