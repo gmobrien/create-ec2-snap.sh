@@ -85,6 +85,9 @@ _delete_snap () {
 # create new snapshot
 _create_snap && $v && printf "New snapshot created for volume $volumeid\n"
 
+# if the retention policy is set to -1 then don't delete any snapshots
+[ "$keep" == '-1' ] && exit 0
+
 # find out how many backup directories are in the root
 snapcount=`_get_snapids | wc -l`
 diff=$(expr $snapcount - $keep)
